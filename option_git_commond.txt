@@ -1,0 +1,39 @@
+git 常用命令
+1.配置git的基本设置
+    git config --global user.name "用户名"  //输出时使用：git config --global user.name 
+    git config --global user.email "用户邮箱地址" 。//输出时使用：git config --global user.email
+2.创建本地仓库
+    （windows环境下可以指定的目录下使用git的右键菜单“Git Bash here”打开git命令窗口）
+    git init //初始化git管理的目录
+
+3.查看当前仓库状态
+    git status
+
+4.添加文件或目录到git中管理
+    git add [文件名1，文件名2， 文件名3， .......] //add命令后跟随多个文件名表示增加多个文件
+    git add . //add命令后跟随“.”表示将当前目录添加到git中管理
++
+5.提交变更到本地仓库中
+    git commit -m "变更的说明"
+
+6.检查git的提交编号（版本号）：
+    git log //查看版本
+    git log --pretty=online //查看版本和提交信息在一行显示
+
+7.回退操作
+    git reset --hard [版本号]
+
+8.由于git退回到之前的版本如果使用“git log”只能看到退回版本之前的版本号如果需要看到最新的版本号需要使用
+  以下命令查看
+    git reflog
+
+
+从线上仓库克隆仓库
+1.向线上仓库提交文件
+    首次提交的时候提示403表示没有权限，需要进行权限配置
+    需要修改.git/config文件进行配置
+    错误提示为
+    git push
+
+2.从线上仓库拉去最新版本
+    git pull
