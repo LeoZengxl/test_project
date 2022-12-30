@@ -16,5 +16,7 @@ git分支操作
         合并分支
         git merge 被合并的分支名
 
+        将本地分支提交到远端
+        git push origin 分支名
 
         (测试增加行到dev分支)
