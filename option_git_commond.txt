@@ -18,7 +18,7 @@ git 本地仓库操作常用命令
 
     6.检查git的提交编号（版本号）：
         git log //查看版本
-        git log --pretty=online //查看版本和提交信息在一行显示
+        git log --pretty=oneline //查看版本和提交信息在一行显示
 
     7.回退操作
         git reset --hard [版本号]
