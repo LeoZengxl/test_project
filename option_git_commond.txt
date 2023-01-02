@@ -30,7 +30,8 @@ git 本地仓库操作常用命令
 
 从线上仓库克隆仓库
     1.从线上仓库clone项目目录
-        git clone [git URL] 
+        git clone [git URL]
+         
     2.向线上仓库提交文件
         首次提交的时候提示403表示没有权限，需要进行权限配置
         需要修改.git/config文件进行配置
