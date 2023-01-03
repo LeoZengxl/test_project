@@ -20,3 +20,6 @@ git分支操作
         git push origin 分支名
 
         (测试增加行到dev分支)
+
+如何解决git冲突
+    
