@@ -1,0 +1,48 @@
+线程池建议使用jdk中定义的线程池类来处理线程池（java.util.concurrent.ThreadPoolExecutor）
+
+    ThreadPoolExecutor类的构造方法说明
+        public ThreadPoolExecutor(int corePoolSize,  --核心线程数
+                                int maximumPoolSize, --最大线程数
+                                long keepAliveTime,  --线程生存时间
+                                TimeUnit unit,       --生存时间单位
+                                BlockingQueue<Runnable> workQueue, --任务缓冲队列
+                                ThreadFactory threadFactory,       --线程工厂
+                                RejectedExecutionHandler handler   --任务拒绝处理对象（当线程数和任务缓冲队列达到限制，提交任务将被阻止，其中有4种处理策略）
+                                )
+        注意：
+        1.默认情况只有辅助线程的生存时间；
+        2.辅助线程数 = 最大线程数 - 核心线程数；
+        3.当设置了allowCoreThreadTimeOut为true时核心线程数就会有生存时间;
+
+        示例代码：
+            	public static void testThreadPoolExecutor(){
+                    ThreadPoolExecutor threadPool = new ThreadPoolExecutor(3,
+                            5,
+                            10,
+                            TimeUnit.SECONDS,
+                            new ArrayBlockingQueue<>(3),
+                            Executors.defaultThreadFactory(),
+                            new ThreadPoolExecutor.AbortPolicy());
+
+                    for (int i = 0; i < 9; i++) {
+                        int y = i;
+                        threadPool.execute(()->{
+                            logger.debug("执行任务" + y);
+                        });
+
+            //使当前线程休眠，以使所有的任务都可以添加到线程池中之行
+            //			try {
+            //				TimeUnit.SECONDS.sleep(1);
+            //			} catch (InterruptedException e) {
+            //				throw new RuntimeException(e);
+            //			}
+                    }
+                }
+
+补充笔记
+    线程池中的任务队列的类型有两种，阻塞和非阻塞 BlockingQueue
+        举例说明：
+        1.LinkedList为非阻塞队列
+            从队列中获取元素，无论是否存在会立即返回结果
+        2.ArrayBlockingQueue为阻塞队列
+            当调用阻塞方法获取元素时如果元素不存在则等待，直到有元素才返回结果
